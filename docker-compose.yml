@@ -25,6 +25,21 @@ services:
       CONFIG_USE_SQLITE: 'false'
       MPOP_SERVICE_PORT_NUMBER: '3333'
 
+  cron:
+    build: ./mysqldump
+    # image: schnitzler/mysqldump
+    restart: always
+    volumes:
+      - ./mysqldump/crontab:/var/spool/cron/crontabs/root
+      - ./mysqldump/backup.sh:/usr/local/bin/backup.sh
+      - ./backups:/backups
+    command: ["-l", "8", "-d", "8"]
+    environment:
+      MYSQL_HOST: 'db'
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: 'secret'
+      MYSQL_DATABASE: 'mpop_database'
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:

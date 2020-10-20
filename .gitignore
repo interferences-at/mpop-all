@@ -30,3 +30,4 @@ lib*.prl
 lib*.a
 lib*.prl
 
+*.sql
