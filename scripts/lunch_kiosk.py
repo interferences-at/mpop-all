@@ -78,6 +78,7 @@ else: # Dataviz:
 
 # Service:
 if start_service:
-    add_command("docker-compose --file ~/src/mpop/docker-compose.yml up", identifier='database')
+    # XXX We run the DB directly on this host, now.
+    # add_command("docker-compose --file ~/src/mpop/docker-compose.yml up", identifier='database')
     add_command("~/src/mpop/scripts/sh_start_service_without_docker.sh", identifier='service')
 
